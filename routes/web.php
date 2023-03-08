@@ -26,7 +26,7 @@ Route::get('/', function () {
 // Route::put('/students/{id}', [StudentsController::class, 'update'])->name('students.update');
 // Route::delete('/students/{id}', [StudentsController::class, 'destroy'])->name('students.destroy');
 
-Route::resource('students', StudentsController::class);
+Route::resource('students', StudentsController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
