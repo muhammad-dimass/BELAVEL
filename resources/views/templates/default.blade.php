@@ -41,6 +41,7 @@
         <!-- Page body -->
         <div class="page-body">
           <div class="container-xl">
+           @include('templates.partials.alert')
            @yield('content')
           </div>
         </div>

@@ -30,7 +30,13 @@
                           <td>{{ $student->addres}}</td>
                           <td>{{ $student->phone_number }}</td>
                           <td>{{ $student->class }}</td>
-                          <td><a href="{{ route('students.edit', $student->id) }}"> edit </a></td>
+                          <td><a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm"> edit </a>
+                          <form action="{{ route('students.destroy', $student->id ) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+                          </form>
+                        </td>
                         </tr>
                         @endforeach
                       </tbody>

@@ -33,7 +33,7 @@
         </div>
 
         <div class="mb-3">
-            <input type="submit" value="Store" class="btn btn-primary">
+            <input type="submit" value="Update" class="btn btn-primary">
         </div>
     </form>
     </div>

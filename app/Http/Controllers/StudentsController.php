@@ -11,7 +11,7 @@ class StudentsController extends Controller
     {
         $tes = Student::all();
             return view('students.index', compact('tes'), [
-            'students' => Student::get(),
+            'students' => Student::latest()->get(),
         ]);
     }
 
@@ -22,6 +22,15 @@ class StudentsController extends Controller
     
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => ['required','min:3'],
+            'addres' => ['required','min:3'],
+            'phone_number' => ['required','numeric','min:10'],
+            'class' => ['required','min:3']
+        ]
+        // ['name.required' => 'kolom nama harus diisi']
+        );
+
         $student = new Student();
 
         $student->name = $request->name;
@@ -29,7 +38,9 @@ class StudentsController extends Controller
         $student->phone_number = $request->phone_number;
         $student->class = $request->class;
 
-        $student->save();   
+        $student->save();
+
+        session()->flash('success', 'Add Data Successfully');   
         return redirect()->route('students.index');
 
     }
@@ -51,9 +62,17 @@ class StudentsController extends Controller
         $student->phone_number = $request->phone_number;
         $student->class = $request->class;
 
-        $student->save();   
-        return redirect()->route('students.index');
+        $student->save(); 
+        // session()->flash('success', 'Update Data Successfully');   
+        return redirect()->route('students.index')->with('info', 'update data successfully');
 
+    }
+    public function destroy($id)
+    {
+        $students = Student::find($id);
+        $students->delete();
+        session()->flash('danger', 'Delete Data Successfully');   
+        return redirect()->route('students.index');
     }
 
 }
