@@ -14,22 +14,42 @@
         @method('PUT')
         <div class="mb-3">
           <label class="form-label">Name</label>
-          <input type="text" class="form-control" name="name" placeholder="Input name" value="{{$student->name}}">
+          <input type="text" class="form-control  @error('name')
+            is-invalid
+            @enderror" name="name" placeholder="Input name" value="{{old('name') ?? $student->name}}">
+            @error('name')
+            <span class="invalid-feedback" >{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="mb-3">
           <label class="form-label">Addres</label>
-          <input type="text" class="form-control" name="addres" placeholder="Input addres" value="{{ $student->addres }}">
+          <input type="text" class="form-control  @error('addres')
+            is-invalid
+            @enderror" name="addres" placeholder="Input addres" value="{{ old('addres') ?? $student->addres }}">
+            @error('addres')
+            <span class="invalid-feedback" >{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="mb-3">
           <label class="form-label">phone number</label>
-          <input type="text" class="form-control" name="phone_number" placeholder="Input phone number" value="{{ $student->phone_number }}">
+          <input type="text" class="form-control  @error('phone_number')
+            is-invalid
+            @enderror" name="phone_number" placeholder="Input phone number" value="{{ old('phone_number') ?? $student->phone_number }}">
+            @error('phone_number')
+            <span class="invalid-feedback" >{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="mb-3">
           <label class="form-label">Class</label>
-          <input type="text" class="form-control" name="class" placeholder="Input class" value="{{ $student->class }}">
+          <input type="text" class="form-control  @error('class')
+            is-invalid
+            @enderror" name="class" placeholder="Input class" value="{{ old('class') ?? $student->class }}">
+            @error('class')
+            <span class="invalid-feedback" >{{ $message }}</span>
+            @enderror
         </div>
 
         <div class="mb-3">
