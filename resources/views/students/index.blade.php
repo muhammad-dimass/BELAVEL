@@ -17,6 +17,7 @@
                       <thead>
                         <tr>
                           <th>Name</th>
+                          <th>Photo</th>
                           <th>Addres</th>
                           <th>Phone</th>
                           <th>Class</th>
@@ -27,9 +28,12 @@
                         @foreach($students as $student)
                         <tr>
                           <td>{{ $student->name }}</td>
+                          <td>
+                            <img src="{{ asset('storage/'.$student->photo) }}" height="150px" >
+                          </td>
                           <td>{{ $student->addres}}</td>
                           <td>{{ $student->phone_number }}</td>
-                          <td>{{ $student->class }}</td>
+                          <td>{{ $student->StudentClass->name }}</td>
                           <td><a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm"> edit </a>
                           <form action="{{ route('students.destroy', $student->id ) }}" method="post">
                             @csrf

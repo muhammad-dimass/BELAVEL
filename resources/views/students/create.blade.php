@@ -9,7 +9,7 @@
 
 <div class="card">
     <div class="card-body">
-    <form action="{{ route('students.store') }}" method="post">
+    <form action="{{ route('students.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
           <label class="form-label">Name</label>
@@ -43,10 +43,22 @@
 
         <div class="mb-3">
           <label class="form-label">Class</label>
-          <input type="text" class="form-control  @error('class')
+        <select name="student_class_id" id="" class="form-control">
+            @foreach ($classes as $class)
+            <option value="{{ $class->id }}">{{ $class->name }}</option>
+            @endforeach
+        </select>
+          @error('class')
+            <span class="invalid-feedback" >{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Photo</label>
+          <input type="file" class="form-control @error('photo')
             is-invalid
-            @enderror" name="class" placeholder="Input class" value="{{ old('class') }}">
-            @error('class')
+            @enderror" name="photo" placeholder="Input photo" value="{{ old('photo') }}">
+            @error('photo')
             <span class="invalid-feedback" >{{ $message }}</span>
             @enderror
         </div>

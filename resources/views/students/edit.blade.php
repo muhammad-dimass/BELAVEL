@@ -9,7 +9,7 @@
 
 <div class="card">
     <div class="card-body">
-    <form action="{{ route('students.update', $student->id) }}" method="post">
+    <form action="{{ route('students.update', $student->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -44,10 +44,22 @@
 
         <div class="mb-3">
           <label class="form-label">Class</label>
-          <input type="text" class="form-control  @error('class')
+        <select name="student_class_id" id="" class="form-control">
+            @foreach ($classes as $class)
+            <option value="{{ $class->id }}" @selected( $class->id == $student->student_class_id ) >{{ $class->name }}</option>
+            @endforeach
+        </select>
+          @error('class')
+            <span class="invalid-feedback" >{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Photo</label>
+          <input type="file" class="form-control @error('photo')
             is-invalid
-            @enderror" name="class" placeholder="Input class" value="{{ old('class') ?? $student->class }}">
-            @error('class')
+            @enderror" name="photo" placeholder="Input photo" value="{{ old('photo') }}">
+            @error('photo')
             <span class="invalid-feedback" >{{ $message }}</span>
             @enderror
         </div>
