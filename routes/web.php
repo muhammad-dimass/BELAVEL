@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\StudentClassController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,9 +25,10 @@ Route::get('/', function () {
 // Route::post('/students', [StudentsController::class, 'store'])->name('students.store');
 // Route::get('/students/{id}/edit', [StudentsController::class, 'edit'])->name('students.edit');
 // Route::put('/students/{id}', [StudentsController::class, 'update'])->name('students.update');
-// Route::delete('/students/{id}', [StudentsController::class, 'destroy'])->name('students.destroy');
+// Route::delete('/students/{id}', [-::class, 'destroy'])->name('students.destroy');
 
 Route::resource('students', StudentsController::class)->middleware('auth');
+Route::resource('studentclass', StudentClassController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
